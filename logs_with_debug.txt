@@ -1,0 +1,137 @@
+Installing Terraform
+Initializing Terraform
+module.synthetics-directory["monitoring-script.tpl"].data.template_file.browser_script_data[0]: Reading...
+module.synthetics-directory["monitoring-script.tpl"].data.template_file.browser_script_data[0]: Read complete after 0s [id=b2c63f27be7ca969478ff87ee9dde7f577d6239fbd9aa60bde5e321627b80dc8]
+module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_monitor.url[0]: Refreshing state... [id=MjQ3OTYxNHxTWU5USHxNT05JVE9SfGQwYzU5MGI0LTJmNzMtNDYwZC1iNjM2LTllODBjZmFlNzc2OQ]
+data.newrelic_entity.app: Reading...
+module.synthetics-directory["monitoring-script.tpl"].newrelic_alert_policy.synthetics-policy[0]: Refreshing state... [id=5268468]
+module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_script_monitor.scripted[0]: Refreshing state... [id=MjQ3OTYxNHxTWU5USHxNT05JVE9SfDQ0YWFkOTRmLTJjN2ItNDM4Ni04ZDFkLWMyNWMyOTc0MWRkZA]
+data.newrelic_entity.app: Read complete after 1s [id=MjQ3OTYxNHxFWFR8U0VSVklDRXwzNzg1MzAyNTc0Njk0NDAxNTE4]
+module.alert_policy[0].data.newrelic_entity.app: Reading...
+module.service.data.pagerduty_vendor.newrelic: Read complete after 1s [id=PQFCJER]
+module.alert_policy[0].newrelic_alert_policy.COMMON_ALERT_POLICY: Refreshing state... [id=4961465]
+module.alert_policy[0].newrelic_nrql_alert_condition.nrql_alert_condition["alert_condition_UpdateLocationFailed"]: Refreshing state... [id=4961465:38091477]
+module.alert_policy[0].newrelic_nrql_alert_condition.nrql_alert_condition["alert_condition_http_errors_5xx"]: Refreshing state... [id=4961465:38091473]
+module.alert_policy[0].newrelic_nrql_alert_condition.nrql_alert_condition["alert_condition_http_errors_4xx"]: Refreshing state... [id=4961465:38091476]
+module.alert_policy[0].newrelic_nrql_alert_condition.anomaly_nrql_alert_condition["alert_transaction_rate_baseline"]: Refreshing state... [id=4961465:38091478]
+module.alert_policy[0].data.newrelic_entity.app: Read complete after 0s [id=MjQ3OTYxNHxFWFR8U0VSVklDRXwzNzg1MzAyNTc0Njk0NDAxNTE4]
+module.alert_policy[0].newrelic_nrql_alert_condition.nrql_alert_condition["alert_condition_CreateLocationFailed"]: Refreshing state... [id=4961465:38091475]
+module.alert_policy[0].newrelic_nrql_alert_condition.nrql_alert_condition["alert_condition_CreateLocationResponseTime"]: Refreshing state... [id=4961465:38091474]
+module.alert_policy[0].newrelic_nrql_alert_condition.nrql_alert_condition["alert_condition_GenerateOrUploadXmlDataFeedFailed"]: Refreshing state... [id=4961465:38091479]
+module.channels.newrelic_notification_destination.notification_destinations[1]: Refreshing state... [id=a7d8afe5-863c-4646-82d1-42acb35716f6]
+module.channels.newrelic_notification_destination.notification_destinations[0]: Refreshing state... [id=52cb0d2d-e1ee-4713-8251-ea561fd32e3a]
+module.channels.newrelic_notification_channel.notification_channels[1]: Refreshing state... [id=9efad095-160a-4639-9966-979751f93a31]
+module.channels.newrelic_notification_channel.notification_channels[0]: Refreshing state... [id=f7b36471-a453-4b8e-be9e-a71e364ccbed]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  # module.alert_workflow.newrelic_workflow.workflow will be created
+  + resource "newrelic_workflow" "workflow" {
+      + account_id            = (known after apply)
+      + destinations_enabled  = true
+      + enabled               = true
+      + enrichments_enabled   = true
+      + guid                  = (known after apply)
+      + id                    = (known after apply)
+      + last_run              = (known after apply)
+      + muting_rules_handling = "NOTIFY_ALL_ISSUES"
+      + name                  = "location-services-prod Workflow"
+      + workflow_id           = (known after apply)
+
+      + destination {
+          + channel_id            = "************************************"
+          + name                  = (known after apply)
+          + notification_triggers = (known after apply)
+          + type                  = (known after apply)
+        }
+      + destination {
+          + channel_id            = "************************************"
+          + name                  = (known after apply)
+          + notification_triggers = (known after apply)
+          + type                  = (known after apply)
+        }
+
+      + issues_filter {
+          + filter_id = (known after apply)
+          + name      = "Filters"
+          + type      = "FILTER"
+
+          + predicate {
+              + attribute = "labels.policyIds"
+              + operator  = "EXACTLY_MATCHES"
+              + values    = [
+                  + "4961465",
+                  + "5268468",
+                ]
+            }
+        }
+    }
+
+
+  # module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_multilocation_alert_condition.scripted_synthetics_policy_condition[0] will be created
+  + resource "newrelic_synthetics_multilocation_alert_condition" "scripted_synthetics_policy_condition" {
+      + enabled                      = true
+      + entities                     = [
+          + "***************************************************************************",
+        ]
+      + entity_guid                  = (known after apply)
+      + id                           = (known after apply)
+      + name                         = "location-services-prod-monitoring-script-Scripted-Alert-Condition"
+      + policy_id                    = 5268468
+      + violation_time_limit_seconds = 0
+
+      + critical {
+          + threshold = 1
+        }
+    }
+
+  # module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_multilocation_alert_condition.url-synthetics-policy-condition[0] will be created
+  + resource "newrelic_synthetics_multilocation_alert_condition" "url-synthetics-policy-condition" {
+      + enabled                      = true
+      + entities                     = [
+          + "***************************************************************************",
+        ]
+      + entity_guid                  = (known after apply)
+      + id                           = (known after apply)
+      + name                         = "location-services-prod-monitoring-script-URL-Alert-Condition"
+      + policy_id                    = 5268468
+      + violation_time_limit_seconds = 0
+
+      + critical {
+          + threshold = 1
+        }
+    }
+
+Plan: 3 to add, 0 to destroy.
+
+
+Warning: Deprecated Resource
+
+  with module.alert_policy.newrelic_alert_condition.metric_alert_condition,
+  on /tmp/terraform-data-dir/modules/alert_policy/Alerts/main.tf line 112, in resource "newrelic_alert_condition" "metric_alert_condition":
+ 112: resource "newrelic_alert_condition" "metric_alert_condition" {
+
+The `newrelic_alert_condition` resource is deprecated and will be removed in
+the next major release.
+Automatically approving plan
+module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_multilocation_alert_condition.scripted_synthetics_policy_condition[0]: Creating...
+module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_multilocation_alert_condition.url-synthetics-policy-condition[0]: Creating...
+
+
+Error: 422 response returned: Policy with ID 5268468 not found
+
+  with module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_multilocation_alert_condition.url-synthetics-policy-condition[0],
+  on /tmp/terraform-data-dir/modules/synthetics-directory/synthetics/main.tf line 26, in resource "newrelic_synthetics_multilocation_alert_condition" "url-synthetics-policy-condition":
+  26: resource "newrelic_synthetics_multilocation_alert_condition" "url-synthetics-policy-condition" {
+
+
+Error: 422 response returned: Policy with ID 5268468 not found
+
+  with module.synthetics-directory["monitoring-script.tpl"].newrelic_synthetics_multilocation_alert_condition.scripted_synthetics_policy_condition[0],
+  on /tmp/terraform-data-dir/modules/synthetics-directory/synthetics/main.tf line 57, in resource "newrelic_synthetics_multilocation_alert_condition" "scripted_synthetics_policy_condition":
+  57: resource "newrelic_synthetics_multilocation_alert_condition" "scripted_synthetics_policy_condition" {
